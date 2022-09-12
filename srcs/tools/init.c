@@ -297,7 +297,7 @@ void	init(t_wre *wre, t_player *player, t_textures *text, t_audio *audio)
 	Mix_AllocateChannels(26);
 	get_music_and_game_volume();
 	manage_volume();
-	SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &wre->win, &wre->rend);
+	SDL_CreateWindowAndRenderer(WIDTH, 720, 0, &wre->win, &wre->rend);
 	player->anim.idle = get_texture(wre->rend, "sprites/player/pl.png");
 	player->anim.r = get_texture(wre->rend, "sprites/player/run_file.png");
 	player->anim.idle_dmg = get_texture(wre->rend, "sprites/player/pl-dmg.png");

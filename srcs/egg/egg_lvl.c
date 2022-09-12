@@ -39,7 +39,7 @@ void	egg_level_screen(SDL_Renderer *rend, t_tr cursor, t_keys *keys, t_graphics 
 {
 	int			x, y, iters = 0;
 	clock_t		start, end;
-	SDL_Event	event = { 0 };
+	SDL_Event	event = {0};
 	SDL_Rect	upgrade = {550, 200, 200, 360};
 	uint8_t		bool = 0;
 
