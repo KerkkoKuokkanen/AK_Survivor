@@ -351,6 +351,7 @@ void	draw_dagger(t_dagger *dagger, t_graphics *all, t_textures *text, int curr, 
 void	dagger_seek(t_enemy *enem, t_dagger *dagger, t_graphics *all, t_textures *text, t_audio *audio)
 {
 	int		i = 0, j;
+	double	len;
 
 	while (i < E_COUNT)
 	{

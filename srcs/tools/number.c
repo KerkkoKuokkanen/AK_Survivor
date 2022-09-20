@@ -53,6 +53,7 @@ int		numtok(int *num)
 {
 	static int	make_big = (-1);
 	static int	num_save = 0;
+	int			ret;
 
 	if (make_big == (-1) && num == NULL)
 		return (-1);

@@ -38,8 +38,9 @@ int		back_button(t_graphics *all, int x, int y, uint8_t click, t_tex *button, t_
 {
 	SDL_Rect	dest = {1060, 670, 128, 64};
 	SDL_Rect	frame = {0, 0, 32, 16};
+	static int	check = 0;
 
-	if (point_meeting(x, y, dest))
+	if (point_meeting(x, y, scale_the_rect(dest)))
 	{
 		frame.x = 32;
 		if (*hover == 0)
@@ -50,11 +51,12 @@ int		back_button(t_graphics *all, int x, int y, uint8_t click, t_tex *button, t_
 		*hover = 0;
 	make_curr_graph(all, *button, &dest, &frame, NULL, 0, 0);
 	put_text_to_screen(all, 1085, 691, "back", 4, 1);
-	if (frame.x != 0 && click == 1)
+	if (frame.x != 0 && click == 1 && check != click)
 	{
 		Mix_PlayChannel(22, audio->button, 0);
 		return (1);
 	}
+	check = click;
 	return (0);
 }
 
@@ -93,9 +95,9 @@ int	draw_indicator_to_bars(t_graphics *all, t_tex *indicator, int x, int y, uint
 	bigger_smaller_indicator(&dest1, &dest2, x, y, 0);
 	make_curr_graph(all, *indicator, &dest1, NULL, NULL, 0, 0);
 	make_curr_graph(all, *indicator, &dest2, NULL, NULL, 0, 0);
-	if (point_meeting(x, y, dest1) && click == 1)
+	if (point_meeting(x, y, scale_the_rect(dest1)) && click == 1)
 		ret = 1;
-	else if (point_meeting(x, y, dest2) && click == 1)
+	else if (point_meeting(x, y, scale_the_rect(dest2)) && click == 1)
 		ret = 2;
 	dest1.x -= x1;
 	dest2.x -= x2;
@@ -127,7 +129,7 @@ int	find_the_right_box(int x)
 
 void	update_volumes_to_file(int	sign)
 {
-	int		fd = 0;
+	int		fd;
 	char	c;
 
 	if (sign == 1)
@@ -183,12 +185,15 @@ void	audio_slider(t_graphics *all, t_textures *text, t_audio *audio, int x, int 
 int		audio_menu(t_graphics *all, int x, int y, uint8_t click, t_textures *text, t_audio *audio)
 {
 	static int	back_button_hover = 0;
+	static int	aspect_button_hover = 0;
 
 	audio_screen_text(all);
 	audio_slider(all, text, audio, x, y, click);
+	audio_menu_screen_aspect_ratio(all, text, audio, x, y, click, &aspect_button_hover);
 	if (back_button(all, x, y, click, &text->button, audio, &back_button_hover))
 	{
 		back_button_hover = 0;
+		aspect_button_hover = 0;
 		return (0);
 	}
 	return (2);
@@ -198,7 +203,11 @@ int		rend_back_button(SDL_Renderer *rend, int x, int y, uint8_t click, t_tex *bu
 {
 	SDL_Rect	dest = {1060, 670, 128, 64};
 	SDL_Rect	frame = {0, 0, 32, 16};
+	int			nbutton = 691;
 
+	dest = scale_the_rect(dest);
+	if (aspect_ratio != 1)
+		nbutton *= 0.9;
 	if (point_meeting(x, y, dest))
 	{
 		frame.x = 32;
@@ -210,7 +219,7 @@ int		rend_back_button(SDL_Renderer *rend, int x, int y, uint8_t click, t_tex *bu
 		*hover = 0;
 	SDL_RenderCopy(rend, button->text, &frame, &dest);
 //	make_curr_graph(all, *button, &dest, &frame, NULL, 0, 0);
-	rend_put_text_to_screen(rend, 1085, 691, "back", 4, 1);
+	rend_put_text_to_screen(rend, 1085, nbutton, "back", 4, 1);
 	if (frame.x != 0 && click == 1)
 	{
 		Mix_PlayChannel(22, audio->button, 0);

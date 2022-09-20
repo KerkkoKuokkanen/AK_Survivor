@@ -10,9 +10,17 @@ void	cursor_to_screen(t_graphics *all, t_tr cursor, int x, int y)
 
 void	lvl_c_to_screen(SDL_Renderer *rend, t_tr cursor, int x, int y)
 {
+	SDL_Rect	dest;
+
 	cursor.rect.x = x - 7;
 	cursor.rect.y = y - 7;
-	SDL_RenderCopy(rend, cursor.text.text, NULL, &cursor.rect);
+/* 	if (aspect_ratio != 1)
+	{
+		dest = scale_the_rect(cursor.rect);
+		SDL_RenderCopy(rend, cursor.text.text, NULL, &dest);
+	}
+	else */
+		SDL_RenderCopy(rend, cursor.text.text, NULL, &cursor.rect);
 }
 
 //tried to make the code cleaner by calling these two functions from here

@@ -226,7 +226,8 @@ void	make_nulls(int *nulls, int i)
 
 void	put_images_to_screen(SDL_Renderer *rend, t_graphics *all)
 {
-	int	i = 0;
+	int			i = 0;
+	SDL_Rect	dest;
 
 	while (i < curr_sprite && i < SPRITE_AMOUNT)
 	{
@@ -239,8 +240,9 @@ void	put_images_to_screen(SDL_Renderer *rend, t_graphics *all)
 							all[i].sign);
 				break ;
 			case 1:
+				dest = scale_the_rect(all[i].dest);
 				SDL_RenderCopyEx(rend, all[i].tex.text,
-							NULL, &all[i].dest,
+							NULL, &dest,
 							all[i].angle, NULL,
 							all[i].sign);
 				break ;
@@ -257,14 +259,16 @@ void	put_images_to_screen(SDL_Renderer *rend, t_graphics *all)
 							all[i].sign);
 				break ;
 			case 4:
+				dest = scale_the_rect(all[i].dest);
 				SDL_RenderCopyEx(rend, all[i].tex.text,
-							&all[i].frame, &all[i].dest,
+							&all[i].frame, &dest,
 							all[i].angle, NULL,
 							all[i].sign);
 				break ;
 			case 5:
+				dest = scale_the_rect(all[i].dest);
 				SDL_RenderCopyEx(rend, all[i].tex.text,
-							NULL, &all[i].dest,
+							NULL, &dest,
 							all[i].angle, &all[i].point,
 							all[i].sign);
 				break ;
@@ -275,8 +279,9 @@ void	put_images_to_screen(SDL_Renderer *rend, t_graphics *all)
 							all[i].sign);
 				break ;
 			case 7:
+				dest = scale_the_rect(all[i].dest);
 				SDL_RenderCopyEx(rend, all[i].tex.text,
-							&all[i].frame, &all[i].dest,
+							&all[i].frame, &dest,
 							all[i].angle, &all[i].point,
 							all[i].sign);
 				break ;
@@ -335,7 +340,7 @@ void	bigger_smaller_indicator(SDL_Rect *one, SDL_Rect *two, int x, int y, int si
 		b = 0;
 		return ;
 	}
-	if (point_meeting(x, y, *one))
+	if (point_meeting(x, y, scale_the_rect(*one)))
 	{
 		if (a < 5)
 		{
@@ -354,7 +359,7 @@ void	bigger_smaller_indicator(SDL_Rect *one, SDL_Rect *two, int x, int y, int si
 		one->h -= 4;
 		a--;
 	}
-	if (point_meeting(x, y, *two))
+	if (point_meeting(x, y, scale_the_rect(*two)))
 	{
 		if (b < 5)
 		{

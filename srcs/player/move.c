@@ -46,10 +46,10 @@ void	move_player(t_player *player, t_keys keys, t_graphics *all, SDL_Rect *g_mov
 		bool = 4;
 	}
 	play_audio(bool, walk);
-	if (x < player->anim.rect.x + 16)
-		dir = 1;
+	if (x <= player->anim.rect.x + 16)
+		direction_of_the_gun = 1;
 	else if (x > player->anim.rect.x + 16)
-		dir = 0;
+		direction_of_the_gun = 0;
 	p_anim(*player, all, bool);
 	ground_scroll(left_right, up_down, g_move);
 }

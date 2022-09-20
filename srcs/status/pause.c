@@ -35,18 +35,24 @@ static int	did_hit_check(int did_hit, int check)
 
 void	button_text(SDL_Renderer *rend)
 {
-	rend_put_text_to_screen(rend, 594, 393, "resume", 3, 1);
-	rend_put_text_to_screen(rend, 597, 471, "audio", 4, 1);
-	rend_put_text_to_screen(rend, 581, 553, "main menu", 3, 1);
-	rend_put_text_to_screen(rend, 611, 631, "exit", 4, 1);
+	float		multi = 1;
+	if (aspect_ratio == 0)
+		multi = 0.905;
+	rend_put_text_to_screen(rend, 594, 393 * multi, "resume", 3, 1);
+	rend_put_text_to_screen(rend, 589, 473 * multi, "settings", 3, 1);
+	rend_put_text_to_screen(rend, 581, 553 * multi, "main menu", 3, 1);
+	rend_put_text_to_screen(rend, 611, 631 * multi, "exit", 4, 1);
 }
 
 int	buttons_to_screen(SDL_Renderer *rend, t_textures *text, t_audio *audio, int x, int y, uint8_t click, int *hover)
 {
-	SDL_Rect	resume = {576, 370, 128, 64};
-	SDL_Rect	audiob = {576, 450, 128, 64};
-	SDL_Rect	menub = {576, 530, 128, 64};
-	SDL_Rect	exitb = {576, 610, 128, 64};
+	float		multi = 1;
+	if (aspect_ratio == 0)
+		multi = 0.9;
+	SDL_Rect	resume = {576, 370 * multi, 128, 64};
+	SDL_Rect	audiob = {576, 450 * multi, 128, 64};
+	SDL_Rect	menub = {576, 530 * multi, 128, 64};
+	SDL_Rect	exitb = {576, 610 * multi, 128, 64};
 	int			ret = 0, did_hit = 0, check = 0;
 
 	if ((did_hit = pause_manage_button(rend, &text->button, resume, x, y, click, audio, 1, hover)) == 2)
@@ -74,7 +80,9 @@ int		pause_menu(t_graphics *all, t_wre *wre, t_textures *text, t_audio *audio, t
 	clock_t	start, end;
 	int		x, y;
 	int		hover = 0, ret = 0;
-
+	float	multi = 1;
+	if (aspect_ratio == 0)
+		multi = 0.9;
 	if (keys->escape == 1)
 		keys->escape = 2;
 	Mix_Pause(21);
@@ -86,7 +94,7 @@ int		pause_menu(t_graphics *all, t_wre *wre, t_textures *text, t_audio *audio, t
 		SDL_RenderCopy(wre->rend, text->off_color_status.text, NULL, NULL);
 		if (ret == 0)
 		{
-			rend_put_text_to_screen(wre->rend, 460, 200, "pause", 15, 1);
+			rend_put_text_to_screen(wre->rend, 460, 200 * multi, "pause", 15, 1);
 			ret = buttons_to_screen(wre->rend, text, audio, x, y, keys->click, &hover);
 		}
 		else if (ret == 2)

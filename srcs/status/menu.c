@@ -15,7 +15,7 @@ void	title_screen(t_graphics *all)
 	put_text_to_screen(all, 330, 192, "ak survivor", 14, 1);
 	put_text_to_screen(all, 548, 280, "kill all bosses", 3, 1);
 	put_text_to_screen(all, 603, 371, "play", 4, 1);
-	put_text_to_screen(all, 598, 451, "audio", 4, 1);
+	put_text_to_screen(all, 588, 454, "settings", 3, 1);
 	put_text_to_screen(all, 611, 531, "exit", 4, 1);
 }
 
@@ -24,7 +24,7 @@ int		manage_button(t_graphics *all, t_tex *button, SDL_Rect dest, int x, int y, 
 	SDL_Rect	frame = {0, 0, 32, 16};
 	int			ret = 0;
 
-	if (point_meeting(x, y, dest))
+	if (point_meeting(x, y, scale_the_rect(dest)))
 	{
 		ret = 1;
 		if (*hover != curr)
@@ -97,7 +97,10 @@ void	main_menu(t_wre *wre, t_graphics *all, t_textures *text, t_audio *audio, t_
 				bigger_smaller_indicator(NULL, NULL, 0, 0, 1);
 		}
 		else
+		{
+			full_screen(all, wre, text, audio, x, y, &keys->click);
 			bool = audio_menu(all, x, y, keys->click, text, audio);
+		}
 		put_images_to_screen(wre->rend, all);
 		lvl_c_to_screen(wre->rend, text->cursor, x, y);
 		SDL_RenderPresent(wre->rend);

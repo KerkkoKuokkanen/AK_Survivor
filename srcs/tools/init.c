@@ -123,7 +123,7 @@ void	init_global()
 	speed = real_speed;
 	player_hit = 0;
 	run_anim = 0;
-	dir = 0;
+	direction_of_the_gun = 0;
 	enemy_timer = 0;
 	up_down = 0;
 	left_right = 0;
@@ -139,14 +139,14 @@ void	init_global()
 	empty_heart.y = 0;
 	empty_heart.w = 16;
 	empty_heart.h = 16;
-	phbox.x = CENTER_X - 10;
-	phbox.y = CENTER_Y - 10;
-	phbox.w = 17;
-	phbox.h = 20;
-	big_phbox.x = CENTER_X - 100;
-	big_phbox.y = CENTER_Y - 100;
-	big_phbox.w = 200;
-	big_phbox.h = 200;
+	phbox.x = CENTER_X - 10; //
+	phbox.y = CENTER_Y - 10; //
+	phbox.w = 17; // 
+	phbox.h = 20; //
+	big_phbox.x = CENTER_X - 100; //
+	big_phbox.y = CENTER_Y - 100; //
+	big_phbox.w = 200; //
+	big_phbox.h = 200; //
 	shot_happening = 0;
 	normal_particle_blood_life = 20;
 
@@ -281,10 +281,22 @@ void	get_music_and_game_volume()
 	read(fd, &c, sizeof(char));
 	global_game_volume = c - '0';
 	close(fd);
+	fd = open("sprites/aspect_ratio.txt", O_RDONLY);
+	read(fd, &c, sizeof(char));
+	aspect_ratio = c - '0';
+	close(fd);
+	fd = open("sprites/window.txt", O_RDONLY);
+	read(fd, &c, sizeof(char));
+	window_check_value = c - '0';
+	close(fd);
 	if (global_game_volume > 8 || global_game_volume < 0)
 		global_game_volume = 0;
 	if (global_music_volume > 8 || global_music_volume < 0)
 		global_music_volume = 0;
+	if (aspect_ratio < 0 || aspect_ratio > 1)
+		aspect_ratio = 0;
+	if (window_check_value < 0 || window_check_value > 1)
+		window_check_value = 0;
 }
 
 //very messy function and a file only for initialising values and textures
@@ -424,6 +436,8 @@ void	init(t_wre *wre, t_player *player, t_textures *text, t_audio *audio)
 	player->anim.rage_flame.rect.h = 96;
 	run_init(player);
 	SDL_ShowCursor(SDL_DISABLE);
+	if (aspect_ratio == 0)
+		SDL_SetWindowSize(wre->win, 1280, 720);
 	SDL_SetRenderDrawBlendMode(wre->rend, SDL_BLENDMODE_BLEND);
-	SDL_SetWindowFullscreen(wre->win, SDL_WINDOW_FULLSCREEN);
+	SDL_SetWindowFullscreen(wre->win, window_check_value);
 }

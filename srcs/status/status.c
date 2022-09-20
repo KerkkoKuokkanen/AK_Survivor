@@ -33,6 +33,7 @@ void	show_lvl_amount(SDL_Renderer *rend, t_textures *text, int amount, int x, in
 void	put_lvl_cards_to_screen(SDL_Renderer *rend, t_textures *text)
 {
 	int			i = 0;
+	int			x, y;
 	SDL_Rect	dest = {142, 120, 100, 180};
 	SDL_Rect	frame = {0, 0, 200, 360};
 
@@ -63,7 +64,7 @@ void	damage_ups_to_screen(SDL_Renderer *rend)
 
 void	show_player_status(t_graphics *all, SDL_Renderer *rend, t_keys *keys, t_textures *text, t_tr *cursor)
 {
-	SDL_Event	event = { 0 };
+	SDL_Event	event;
 	clock_t		start, end;
 	int			x, y;
 

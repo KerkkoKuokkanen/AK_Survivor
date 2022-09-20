@@ -142,21 +142,21 @@ int	buttons_to_game_over(t_graphics *all, t_audio *audio, t_textures *text, t_ga
 	SDL_Rect	dest3 = {780, 600, 128, 64};
 	SDL_Rect	frame = {0, 0, 32, 16};
 
-	hit = check_meeting_buttons(&frame, x, y, dest1);
+	hit = check_meeting_buttons(&frame, x, y, scale_the_rect(dest1));
 	if (hit != 0)
 		did_hit = 1;
 	make_curr_graph(all, text->button, &dest1, &frame, NULL, 0, 0);
 	put_text_to_screen(all, 386, 623, "main menu", 3, 1);
 	if (handle_hit(audio, x, y, click, hit, 1, hover))
 		return (2);
-	hit = check_meeting_buttons(&frame, x, y, dest2);
+	hit = check_meeting_buttons(&frame, x, y, scale_the_rect(dest2));
 	if (hit != 0)
 		did_hit = 1;
 	make_curr_graph(all, text->button, &dest2, &frame, NULL, 0, 0);
 	put_text_to_screen(all, 596, 623, "restart", 3, 1);
 	if (handle_hit(audio, x, y, click, hit, 2, hover))
 		return (1);
-	hit = check_meeting_buttons(&frame, x, y, dest3);
+	hit = check_meeting_buttons(&frame, x, y, scale_the_rect(dest3));
 	if (hit != 0)
 		did_hit = 1;
 	make_curr_graph(all, text->button, &dest3, &frame, NULL, 0, 0);
@@ -170,14 +170,18 @@ int	buttons_to_game_over(t_graphics *all, t_audio *audio, t_textures *text, t_ga
 
 void	stats_game_over(t_game_over *over, SDL_Renderer *rend)
 {
+	float	multi = 1;
+
+	if (aspect_ratio == 0)
+		multi = 0.9;
 	if (over->seconds < 3)
 		return ;
-	rend_put_text_to_screen(rend, 300, 400, "enemies killed :", 4, 1);
-	rend_put_number_to_screen(rend, enemies_killed_during_game, 700, 400, 3);
-	rend_put_text_to_screen(rend, 300, 500, "bosses killed :", 4, 1);
-	rend_put_number_to_screen(rend, bosses_killed_during_game, 700, 497, 3);
-	rend_put_text_to_screen(rend, 767, 500, "out of", 4, 1);
-	rend_put_number_to_screen(rend, 20, 900, 497, 3);
+	rend_put_text_to_screen(rend, 300, 400 * multi, "enemies killed :", 4, 1);
+	rend_put_number_to_screen(rend, enemies_killed_during_game, 700, 400 * multi, 3);
+	rend_put_text_to_screen(rend, 300, 500 * multi, "bosses killed :", 4, 1);
+	rend_put_number_to_screen(rend, bosses_killed_during_game, 700, 497 * multi, 3);
+	rend_put_text_to_screen(rend, 767, 500 * multi, "out of", 4, 1);
+	rend_put_number_to_screen(rend, 20, 900, 497 * multi, 3);
 }
 
 int	game_over(t_graphics *all, t_textures *text, t_player *player, t_wre *wre, t_audio *audio, t_keys *keys)
@@ -185,7 +189,7 @@ int	game_over(t_graphics *all, t_textures *text, t_player *player, t_wre *wre, t
 	clock_t				start;
 	clock_t				end;
 	static t_game_over	over = {0, 0, (-1), 200, 0};
-	int					x = 0, y = 0;
+	int					x, y;
 	int					button, hover = 0;
 
 	init_over(&over, keys);

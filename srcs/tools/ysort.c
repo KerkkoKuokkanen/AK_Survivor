@@ -102,7 +102,7 @@ void	sort_the_ysort(t_graphics *all, t_sprite *sprites, int amount, t_sprite *gu
 
 void	ysort(t_graphics *all, t_tex text, SDL_Rect *dest, SDL_Rect *frame, SDL_Point *point, int kulma, int sign, int call_from)
 {
-	static t_sprite	sprites[SPRITE_AMOUNT] = { 0 };
+	static t_sprite	sprites[SPRITE_AMOUNT] = { };
 	static t_sprite	gun_save;
 	static int		amount = 0;
 	int				count = 0;

@@ -38,8 +38,9 @@ void	make_rect_bigger(SDL_Rect *uprgade, const int x, const int y, const int sig
 void	egg_level_screen(SDL_Renderer *rend, t_tr cursor, t_keys *keys, t_graphics *all)
 {
 	int			x, y, iters = 0;
+	static int	chooser = 1;
 	clock_t		start, end;
-	SDL_Event	event = {0};
+	SDL_Event	event;
 	SDL_Rect	upgrade = {550, 200, 200, 360};
 	uint8_t		bool = 0;
 
@@ -68,6 +69,7 @@ void	egg_level_screen(SDL_Renderer *rend, t_tr cursor, t_keys *keys, t_graphics 
 	SDL_RenderClear(rend);
 	dmg_increase = 1;
 	bullet_damage += 16;
+	chooser += 1;
 	Mix_PlayChannel(1, card_choosing_soundeffect, 0);
 	stay_put = 0;
 	keys->click = 0;

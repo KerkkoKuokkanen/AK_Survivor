@@ -50,6 +50,8 @@
 
 # define INSTAKILL_DMG 500
 
+# define COORD_ARRAY_SIZE 2000
+
 # include <stdio.h>
 # include <SDL2/SDL.h>
 # include <SDL2_image/SDL_image.h>
@@ -95,7 +97,7 @@ int			up_down;
 int			run_anim;
 int			angle;
 int			enemy_timer;
-uint8_t		dir;
+uint8_t		direction_of_the_gun;
 SDL_Rect	screen;
 SDL_Rect	big_screen;
 
@@ -136,6 +138,9 @@ int			spike_spawn_active;
 int			spawn_boss;
 
 int			egg_dist_value;
+
+int			aspect_ratio;
+int			window_check_value;
 
 int			lazy_minute_get_variable;
 int			lazy_second_get_variable;
@@ -554,6 +559,9 @@ int			point_on_map(double x, double y);
 int			point_meeting(int x, int y, SDL_Rect box);
 int			get_the_num_from_time(int time, int sign);
 t_map		**enem_map();
+void		full_screen(t_graphics *all, t_wre *wre, t_textures *text, t_audio *audio, int x, int y, uint8_t *click);
+void		audio_menu_screen_aspect_ratio(t_graphics *all, t_textures *text, t_audio *audio, int x, int y, uint8_t click, int *hover);
+SDL_Rect	scale_the_rect(SDL_Rect dest);
 void		update_enem_hbox(t_enemy *enem);
 SDL_Rect	create_move_hbox(t_enemy *enem, t_vec fpos);
 void		move_main(t_enemy *enem, int i, t_text_enemy text);

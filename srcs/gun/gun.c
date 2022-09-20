@@ -31,9 +31,9 @@ int	get_angle(int x, int y, SDL_Rect *gun)
 	v2.y = gun->y - y;
 	ang = calc_a(v1, v2);
 	deg = degree(ang);
-	if (gun->y > y && deg >= 90 && dir == 0)
+	if (gun->y > y && deg >= 90 && direction_of_the_gun == 0)
 		deg -= 180;
-	else if (y > gun->y && deg <= 90 && dir == 1)
+	else if (y > gun->y && deg <= 90 && direction_of_the_gun == 1)
 		deg *= (-1);
 	else if (y >= gun->y && deg > 90)
 		deg = (deg - 180) * (-1);
@@ -106,12 +106,14 @@ void	gun(t_tr gun, int x, int y, SDL_Rect player, t_graphics *all)
 
 	gun_rotate.x = CENTER_X;
 	gun_rotate.y = CENTER_Y;
-	angle = get_angle(x, y, &gun_rotate);
-	make_recoil_for_gun(&gun.rect, x, y);
 	rot.y = 32;
 	rot.x = 20;
+	if (aspect_ratio == 0)
+		gun_rotate.y *= 0.9;
+	angle = get_angle(x, y, &gun_rotate);
+	make_recoil_for_gun(&gun.rect, x, y);
 	screen_shaker(&gun.rect.x, &gun.rect.y);
-	if (dir == 1)
+	if (direction_of_the_gun == 1)
 	{
 		rot.x = 34;
 		ysort(NULL, gun.text, &gun.rect, NULL, &rot, angle, 1, 2);

@@ -79,7 +79,7 @@ void	p_anim(t_player player, t_graphics *all, uint8_t bool)
 			pl_tex = player.anim.rage;
 		else
 			pl_tex = player.anim.idle;
-		if (dir == 1)
+		if (direction_of_the_gun == 1)
 		{
 			player.anim.rect.x -= 32;
 			ysort(NULL, pl_tex, &player.anim.rect, NULL, NULL, 0, 1, 1);
@@ -94,7 +94,7 @@ void	p_anim(t_player player, t_graphics *all, uint8_t bool)
 		pl_tex = player.anim.rage_run;
 	else
 		pl_tex = player.anim.r;
-	if (dir == 0)
+	if (direction_of_the_gun == 0)
 		ysort(NULL, pl_tex, &player.anim.rect, &player.anim.run[i], NULL, 0, 0, 1);
 	else
 	{

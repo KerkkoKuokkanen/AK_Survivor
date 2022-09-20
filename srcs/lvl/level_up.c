@@ -167,7 +167,7 @@ void	choose_upgrade(t_level_up *lvl, SDL_Renderer *rend, t_tr *cursor, t_keys *k
 	int			x, y;
 	static int	exhaust[13] = { 0 };
 	clock_t		start, end;
-	SDL_Event	event = {0};
+	SDL_Event	event;
 	t_itr		one, two, three;
 	uint8_t		bool = 0;
 	int			iters = 0;

@@ -30,6 +30,8 @@ t_vec	make_the_shot_vec(t_vec pos, int x, int y)
 	t_vec	svec;
 	double	len;
 
+	if (aspect_ratio == 0)
+		y *= 1.1;
 	svec.x = pos.x - x;
 	svec.y = pos.y - y;
 	len = sqrt(svec.x * svec.x + svec.y * svec.y);

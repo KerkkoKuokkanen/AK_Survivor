@@ -135,6 +135,7 @@ int		victory_manage_button(SDL_Renderer *rend, t_tex *button, SDL_Rect dest, int
 	SDL_Rect	frame = {0, 0, 32, 16};
 	int			ret = 0;
 
+	dest = scale_the_rect(dest);
 	if (point_meeting(x, y, dest))
 	{
 		ret = 1;
@@ -164,8 +165,12 @@ static int	vdid_hit_check(int did_hit, int check)
 
 void	v_button_text(SDL_Renderer *rend)
 {
-	rend_put_text_to_screen(rend, 505, 723, "main menu", 3, 1);
-	rend_put_text_to_screen(rend, 736, 722, "exit", 4, 1);
+	float	multi = 1;
+
+	if (aspect_ratio == 0)
+		multi = 0.9;
+	rend_put_text_to_screen(rend, 505, 723 * multi, "main menu", 3, 1);
+	rend_put_text_to_screen(rend, 736, 722 * multi, "exit", 4, 1);
 }
 
 int		victory_screen_buttons(SDL_Renderer *rend, t_tex *button, t_audio *audio, uint8_t click, int x, int y, int *hover)
