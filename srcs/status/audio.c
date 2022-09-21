@@ -264,7 +264,7 @@ int	rend_draw_indicator_to_bars(SDL_Renderer *rend, t_tex *indicator, int x, int
 	x2 = (50 * global_game_volume);
 	dest1.x += x1;
 	dest2.x += x2;
-	bigger_smaller_indicator(&dest1, &dest2, x, y, 0);
+	rend_bigger_smaller_indicator(&dest1, &dest2, x, y, 0);
 	SDL_RenderCopy(rend, indicator->text, NULL, &dest1);
 	SDL_RenderCopy(rend, indicator->text, NULL, &dest2);
 //	make_curr_graph(all, *indicator, &dest1, NULL, NULL, 0, 0);

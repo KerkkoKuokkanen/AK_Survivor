@@ -492,6 +492,7 @@ int			pause_menu(t_graphics *all, t_wre *wre, t_textures *text, t_audio *audio, 
 void		bigger_smaller_indicator(SDL_Rect *one, SDL_Rect *two, int x, int y, int sign);
 
 void		dagger_main(t_enemy *enem, int sign, t_graphics *all, t_textures *text, t_audio *audio);
+void		rend_bigger_smaller_indicator(SDL_Rect *one, SDL_Rect *two, int x, int y, int sign);
 
 void		move_enemy_from_player(t_vec *dest);
 

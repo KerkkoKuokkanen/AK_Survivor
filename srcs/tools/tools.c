@@ -379,3 +379,54 @@ void	bigger_smaller_indicator(SDL_Rect *one, SDL_Rect *two, int x, int y, int si
 		b--;
 	}
 }
+
+void	rend_bigger_smaller_indicator(SDL_Rect *one, SDL_Rect *two, int x, int y, int sign)
+{
+	static int	a = 0;
+	static int	b = 0;
+
+	if (sign == 1)
+	{
+		a = 0;
+		b = 0;
+		return ;
+	}
+	if (point_meeting(x, y, *one))
+	{
+		if (a < 5)
+		{
+			one->x -= 1;
+			one->w += 2;
+			one->y -= 2;
+			one->h += 4;
+			a++;
+		}
+	}
+	else if (a > 0)
+	{
+		one->x += 1;
+		one->w -= 2;
+		one->y += 2;
+		one->h -= 4;
+		a--;
+	}
+	if (point_meeting(x, y, *two))
+	{
+		if (b < 5)
+		{
+			two->x -= 1;
+			two->w += 2;
+			two->y -= 2;
+			two->h += 4;
+			b++;
+		}
+	}
+	else if (b > 0)
+	{
+		two->x += 1;
+		two->w -= 2;
+		two->y += 2;
+		two->h -= 4;
+		b--;
+	}
+}
