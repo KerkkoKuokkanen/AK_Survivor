@@ -16,14 +16,14 @@ SRCS =  srcs/main.c srcs/tools/keys.c srcs/tools/init.c srcs/player/anim.c srcs/
 OBJ = $(SRCS:.c=.o)
 HDR = -I ./srcs
 FLAGS = 
-CGFLAGS = -framework OpenGL -framework AppKit
+CGFLAGS = 
 INCLUDES	=	-I./frameworks/SDL2.framework/Versions/A/Headers \
 				-I./frameworks/SDL2_image.framework/Versions/A/Headers \
 				-I./frameworks/SDL2_mixer.framework/Versions/A/Headers \
 				-F./frameworks/
 FRAMEWORKS	=	-F./frameworks \
 				-rpath ./frameworks \
-				-framework OpenGL -framework AppKit -framework OpenCl \
+				 \
 				-framework SDL2 -framework SDL2_image \
 				-framework SDL2_mixer
 
