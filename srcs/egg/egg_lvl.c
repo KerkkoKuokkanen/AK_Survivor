@@ -35,6 +35,17 @@ void	make_rect_bigger(SDL_Rect *uprgade, const int x, const int y, const int sig
 	}
 }
 
+void	egg_x_and_y(int *x, int *y, int iters)
+{
+	*y = 201;
+	if (stick.no_controller == 1)
+	{
+		SDL_GetMouseState(x, y);
+		return ;
+	}
+	*x = 551;
+}
+
 void	egg_level_screen(SDL_Renderer *rend, t_tr cursor, t_keys *keys, t_graphics *all)
 {
 	int			x, y, iters = 0;
@@ -53,7 +64,7 @@ void	egg_level_screen(SDL_Renderer *rend, t_tr cursor, t_keys *keys, t_graphics 
 		keys->click = 0;
 		ft_keys(event, keys);
 		SDL_RenderClear(rend);
-		SDL_GetMouseState(&x, &y);
+		egg_x_and_y(&x, &y, iters);
 		put_images_to_screen(rend, all);
 		if (upgrade_chosen(x, y, upgrade, keys->click) && iters == 20)
 			bool = 1;

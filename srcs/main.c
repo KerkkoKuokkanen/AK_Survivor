@@ -1,26 +1,23 @@
 
 #include "top_down.h"
 
-void	cursor_to_screen(t_graphics *all, t_tr cursor, int x, int y)
+void	cursor_to_screen(SDL_Renderer *rend, t_tr cursor, int x, int y)
 {
+	if (stick.no_controller == 0)
+	{
+		x = 640 - (stick.direction.x * 200.f);
+		y = P_POS_Y - (stick.direction.y * 200.f);
+	}
 	cursor.rect.x = x - 7;
 	cursor.rect.y = y - 7;
-	make_curr_graph(all, cursor.text, &cursor.rect, NULL, NULL, 0, 0);
+	SDL_RenderCopy(rend, cursor.text.text, NULL, &cursor.rect);
 }
 
 void	lvl_c_to_screen(SDL_Renderer *rend, t_tr cursor, int x, int y)
 {
-	SDL_Rect	dest;
-
 	cursor.rect.x = x - 7;
 	cursor.rect.y = y - 7;
-/* 	if (aspect_ratio != 1)
-	{
-		dest = scale_the_rect(cursor.rect);
-		SDL_RenderCopy(rend, cursor.text.text, NULL, &dest);
-	}
-	else */
-		SDL_RenderCopy(rend, cursor.text.text, NULL, &cursor.rect);
+	SDL_RenderCopy(rend, cursor.text.text, NULL, &cursor.rect);
 }
 
 //tried to make the code cleaner by calling these two functions from here
@@ -28,6 +25,47 @@ void	p_actions(int x, int y, t_graphics *all, t_player *player, t_keys keys, t_t
 {
 	move_player(player, keys, all, &text->g_move, x, walk);
 	gun(text->gun, x, y, player->anim.rect, all);
+}
+
+void	get_menu_x_and_y(int *x, int *y)
+{
+	static int	x_center = CENTER_X;
+	static int	y_center = 308;
+	int			tempx, tempy;
+	float		multi = 1;
+
+	if (aspect_ratio == 0)
+		multi = 0.9;
+	if (stick.no_controller == 0)
+	{
+		if (stick.no_len == 1)
+			return ;
+		tempx = x_center - stick.direction.x * 10;
+		tempy = y_center - stick.direction.y * 10;
+		if (tempx > 0 && tempx < 1280)
+		{
+			*x = tempx;
+			x_center = tempx;
+		}
+		if (tempy > 0 && tempy < (800 * multi))
+		{
+			*y = tempy;
+			y_center = tempy;
+		}
+		return ;
+	}
+	SDL_GetMouseState(x, y);
+}
+
+void	get_x_and_y(int *x, int *y)
+{
+	if (stick.no_controller == 0)
+	{
+		*x = 640 - (stick.direction.x * 200.f);
+		*y = P_POS_Y - (stick.direction.y * 200.f);
+		return ;
+	}
+	SDL_GetMouseState(x, y);
 }
 
 // the main while loop for the game. the whole game happens here
@@ -45,7 +83,7 @@ int	game(t_wre wre, t_player player, t_textures text, t_audio audio, t_keys keys
 		ft_keys(wre.event, &keys);
 		SDL_RenderClear(wre.rend);
 		updates(all, text.ground, text.g_move);
-		SDL_GetMouseState(&x, &y);
+		get_x_and_y(&x, &y);
 		boss_spawner(enem, &text.enemy, all, (-1), 0);
 		dark_aura_main(enem, &text, &audio, all);
 		p_actions(x, y, all, &player, keys, &text, audio.walk);

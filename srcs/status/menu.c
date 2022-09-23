@@ -85,7 +85,8 @@ void	main_menu(t_wre *wre, t_graphics *all, t_textures *text, t_audio *audio, t_
 		SDL_RenderClear(wre->rend);
 		clear_screen(all, sizeof(t_graphics) * SPRITE_AMOUNT);
 		ft_keys(wre->event, keys);
-		SDL_GetMouseState(&x, &y);
+		get_menu_x_and_y(&x, &y);
+//		SDL_GetMouseState(&x, &y);
 		ground_scroll_anim(all, text->ground);
 		put_text_to_screen(all, 1100, 780, "game by:  k kuokkanen", 2, 1);
 		if (bool != 2)

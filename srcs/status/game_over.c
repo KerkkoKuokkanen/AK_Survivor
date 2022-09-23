@@ -23,6 +23,13 @@ void	reset_keys(t_keys *keys)
 	keys->r_key = 0;
 	keys->tab = 0;
 	keys->escape = 0;
+	stick.x_dir_controller = 0;
+	stick.y_dir_controller = 0;
+	stick.stick_angle = 0;
+	dpad_used[0] = 0;
+	dpad_used[1] = 0;
+	dpad_used[2] = 0;
+	dpad_used[3] = 0;
 }
 
 void	death_audio(t_audio *audio, t_game_over *over)
@@ -207,7 +214,7 @@ int	game_over(t_graphics *all, t_textures *text, t_player *player, t_wre *wre, t
 		button = buttons_to_game_over(all, audio, text, &over, keys->click, x, y, &hover);
 		if (button != 0)
 			return (button);
-		SDL_GetMouseState(&x, &y);
+		get_menu_x_and_y(&x, &y);
 		put_images_to_screen(wre->rend, all);
 		lvl_c_to_screen(wre->rend, text->cursor, x, y);
 		SDL_RenderPresent(wre->rend);

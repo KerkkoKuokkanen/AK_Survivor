@@ -211,7 +211,7 @@ int		victory_screen(t_graphics *all, t_wre *wre, t_audio *audio, t_textures *tex
 		manage_screen_shake();
 		screen_shaker(&text->g_move.x, &text->g_move.y);
 		ft_keys(wre->event, keys);
-		SDL_GetMouseState(&x, &y);
+		get_menu_x_and_y(&x, &y);
 		make_curr_graph(all, text->ground, NULL, &text->g_move, NULL, 0, 0);
 		move_player(player, *keys, all, &text->g_move, x, audio->walk);
 		gun(text->gun, x, y, player->anim.rect, all);

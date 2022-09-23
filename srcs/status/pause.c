@@ -101,7 +101,7 @@ int		pause_menu(t_graphics *all, t_wre *wre, t_textures *text, t_audio *audio, t
 			ret = rend_audio_menu(wre->rend, x, y, keys->click, text, audio);
 		if (ret == 1 || ret == 3 || keys->escape == 1)
 			break ;
-		SDL_GetMouseState(&x, &y);
+		get_menu_x_and_y(&x, &y);
 		ft_keys(wre->event, keys);
 		lvl_c_to_screen(wre->rend, text->cursor, x, y);
 		SDL_RenderPresent(wre->rend);

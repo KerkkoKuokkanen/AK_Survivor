@@ -11,7 +11,7 @@ SRCS =  srcs/main.c srcs/tools/keys.c srcs/tools/init.c srcs/player/anim.c srcs/
 		srcs/player/creep.c srcs/explosion/dead_whale.c srcs/dagger/dagger.c srcs/explosion/dark_aura.c \
 		srcs/tools/write.c srcs/status/status.c srcs/tools/start_init.c srcs/enemy/hitbox.c \
 		srcs/status/game_over.c srcs/tools/number.c srcs/status/menu.c srcs/status/audio.c \
-		srcs/status/pause.c srcs/status/victory.c srcs/tools/aspect_ratio.c
+		srcs/status/pause.c srcs/status/victory.c srcs/tools/aspect_ratio.c srcs/tools/controller.c
 
 OBJ = $(SRCS:.c=.o)
 HDR = -I ./srcs

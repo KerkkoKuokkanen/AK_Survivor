@@ -19,6 +19,7 @@
 # define E_COUNT 800 //800 is a good amount
 # define BULLET_COUNT 1800
 # define DEATH_OF_PLAYER 1
+# define STICK_DEATHZONE 10000
 
 # define SPIKE_DELAY 30
 # define NUM_JUMP 16
@@ -53,6 +54,7 @@
 # define COORD_ARRAY_SIZE 2000
 
 # include <stdio.h>
+# include "../SDL2/SDL.h"
 # include <SDL2/SDL.h>
 # include <SDL2_image/SDL_image.h>
 # include <SDL2_mixer/SDL_mixer.h>
@@ -64,7 +66,28 @@
 # include "global.h"
 # include <strings.h>
 
+typedef struct	t_vec
+{
+	double	x;
+	double	y;
+}				t_vec;
+
+typedef struct	s_controller
+{
+	SDL_Joystick	*game_controller;
+	int				no_controller;
+	int				x_dir_controller;
+	int				y_dir_controller;
+	int				stick_angle;
+	t_vec			direction;
+	int				no_len;
+}				t_controller;
+
+
+t_controller	stick;
+
 int			player_hit;
+int			dpad_used[4];
 
 int			speed;
 int			real_speed;
@@ -360,12 +383,6 @@ typedef struct	t_map
 	int	quarter;
 }				t_map;
 
-typedef struct	t_vec
-{
-	double	x;
-	double	y;
-}				t_vec;
-
 typedef struct	t_shot
 {
 	int			delay;
@@ -519,6 +536,8 @@ void		make_the_extra_popcorn_shots(t_bullets *bullets, int index);
 void		choose_enemy(t_enemy *enem, t_text_enemy text, int sign);
 
 void		choose_enem_anim_function(t_enemy *enem, t_graphics *all, t_tex text);
+void		controller_sticks(SDL_Event *event, t_keys *keys);
+void		get_menu_x_and_y(int *x, int *y);
 
 void		ysort_main(t_graphics *all, t_tex text, SDL_Rect *dest, SDL_Rect *frame,
 							SDL_Point *point, int angle, int sign, int call_from);
@@ -529,6 +548,8 @@ int			spike_amount_table();
 void		rage_flame(t_tr *flame, t_graphics *all, int sign);
 
 int			cmp_func(const void *a, const void *b);
+void		get_stick_angles(int angle_x, int angle_y, int sign);
+void		stick_to_keys(t_keys *keys);
 
 int			victory_screen(t_graphics *all, t_wre *wre, t_audio *audio, t_textures *text, t_player *player, t_keys *keys, t_enemy *enem);
 
@@ -553,7 +574,6 @@ int			possible_move(SDL_Rect enem, SDL_Rect hbox, t_vec dir);
 int			check_the_space_to_spawn(t_enemy *enem, int i);
 void		push_back_main(t_enemy *enem, int curr);
 void		draw_bar(t_graphics *all, t_tr full, t_tr empty);
-void		cursor_to_screen(t_graphics *all, t_tr cursor, int x, int y);
 void		enemy_main(t_enemy *enem, t_text_enemy text, t_graphics *all);
 int			place_meeting(SDL_Rect box, SDL_Rect hit);
 int			point_on_map(double x, double y);

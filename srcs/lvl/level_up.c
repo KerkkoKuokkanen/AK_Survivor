@@ -162,6 +162,47 @@ void	exhaust_init(int *exhaust)
 	}
 }
 
+void	lvl_x_and_y(int *x, int *y, int iters)
+{
+	static int	curr = 1;
+	static int	dir = 0;
+
+	*y = 201;
+	if (iters == 0)
+	{
+		curr = 1;
+		dir = 0;
+	}
+	if (stick.no_controller == 1)
+	{
+		SDL_GetMouseState(x, y);
+		return ;
+	}
+	if (dir == 0)
+	{
+		if (dpad_used[2] == 0 && dpad_used[3] == 0)
+			curr += stick.x_dir_controller;
+		else if (dpad_used[2] == 1)
+			curr -= 1;
+		else if (dpad_used[3] == 1)
+			curr += 1;
+	}
+	if (curr < 1)
+		curr = 1;
+	else if (curr > 3)
+		curr = 3;
+	if (curr == 1)
+		*x = 251;
+	else if (curr == 2)
+		*x = 551;
+	else
+		*x = 851;
+	if (dpad_used[2] == 0 && dpad_used[3] == 0)
+		dir = stick.x_dir_controller;
+	else
+		dir = 1;
+}
+
 void	choose_upgrade(t_level_up *lvl, SDL_Renderer *rend, t_tr *cursor, t_keys *keys, Mix_Chunk *card, t_graphics *all, int sign)
 {
 	int			x, y;
@@ -184,7 +225,7 @@ void	choose_upgrade(t_level_up *lvl, SDL_Renderer *rend, t_tr *cursor, t_keys *k
 		keys->click = 0;
 		ft_keys(event, keys);
 		SDL_RenderClear(rend);
-		SDL_GetMouseState(&x, &y);
+		lvl_x_and_y(&x, &y, iters);
 		put_images_to_screen(rend, all);
 		if (iters == 20)
 			bool = pick_upgrade(one, two, three, x, y, keys->click);
