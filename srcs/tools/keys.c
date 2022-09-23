@@ -177,7 +177,8 @@ void	ft_keys(SDL_Event event, t_keys *keys)
 			break ;
 		}
 	}
-	if (dpad_used[0] == 0 && dpad_used[1] == 0 && dpad_used[2] == 0 && dpad_used[3] == 0)
+	if (stick.no_controller == 0 && dpad_used[0] == 0 && dpad_used[1] == 0 && dpad_used[2] == 0 && dpad_used[3] == 0)
 		stick_to_keys(keys);
-	get_stick_angles(0, 0, 1);
+	if (stick.no_controller == 0)
+		get_stick_angles(0, 0, 1);
 }
