@@ -72,7 +72,7 @@ void	ft_keys(SDL_Event event, t_keys *keys)
 						keys->r_key = 1;
 						break ;
 					case SDL_CONTROLLER_BUTTON_BACK:
-						keys->escape = 1;
+						keys->tab = 1;
 						break ;
 				}
 				break ;
@@ -111,7 +111,7 @@ void	ft_keys(SDL_Event event, t_keys *keys)
 						keys->r_key = 0;
 						break ;
 					case SDL_CONTROLLER_BUTTON_BACK:
-						keys->escape = 0;
+						keys->tab = 0;
 						break ;
 				}
 				break ;
