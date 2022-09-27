@@ -199,8 +199,8 @@ void	add_values_do_dagger(t_enemy *enem, t_dagger *dagger, int curr)
 		if (i < dagger_active && bool == 0)
 		{
 			dagger->dagger[i].active = 1;
-			dagger->dagger[i].pos.x = enem[curr].pos.x + (enem->text.rect.w / 2) - (DAGGER_HALF_X);
-			dagger->dagger[i].pos.y = enem[curr].pos.y + (enem->text.rect.h / 2) - (DAGGER_HALF_Y);
+			dagger->dagger[i].pos.x = enem[curr].pos.x + (enem[curr].text.rect.w / 2) - (DAGGER_HALF_X);
+			dagger->dagger[i].pos.y = enem[curr].pos.y + (enem[curr].text.rect.h / 2) - (DAGGER_HALF_Y);
 			add_dir_to_dagger(dagger, i);
 			if (get_dagger_target(enem, dagger, i))
 			{
