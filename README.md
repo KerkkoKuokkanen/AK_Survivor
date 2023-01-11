@@ -43,7 +43,7 @@ MacOS only :(
 
 <img width="1280 / 2" alt="Screenshot 2023-01-11 at 12 08 43" src="https://user-images.githubusercontent.com/93378894/211779875-31d776a2-a42a-4a88-9eec-400a573ede75.png">
 
-## Some of the upgrades
+## Few of upgrades
 
 #### Daggers
 
