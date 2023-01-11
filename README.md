@@ -3,6 +3,12 @@
 AK survivor is my own small indie game made with only C and the help of SDL framework. 
 The core gameplay is about killing hordes of enemies and power uping your character with different upgrades.
 
+I wanted to make a game without any engine, so I could control the memory my self and make the performance much better than with any engine and because I like coding in C.I am fairly sure that game with this many objects on the screen with every object with their own code would not run as smoothly if made with something like unity.
+
+Now all the memory the program needs is given right at the start so no more allocating is happening in the middle of program. Some thigs still could have been done better and I take this game as a learning process so I can get better in the future.
+
+But all in all I am happy with this game. It is fun to play and runs smoothly.
+
 ### Gameplay
 
 ![ezgif com-gif-maker-8](https://user-images.githubusercontent.com/93378894/211575661-d0e8e944-17cc-443c-8d85-9f1a9f0de365.gif)
