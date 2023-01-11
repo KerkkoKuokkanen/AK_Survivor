@@ -11,6 +11,10 @@ The core gameplay is about killing hordes of enemies and power uping your charac
 
 ![ezgif com-gif-maker-10](https://user-images.githubusercontent.com/93378894/211777425-05a66067-05e9-40ad-8b92-579392219de1.gif)
 
+### Victory
+
+![Uploading ezgif.com-gif-maker-11.gif…]()
+
 ### Different Screens
 
 #### Upgrades
