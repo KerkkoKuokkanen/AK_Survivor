@@ -45,6 +45,7 @@ All of the code and assets are in this repository.
 
 #### Daggers
 
-![ezgif com-gif-maker-12](https://user-images.githubusercontent.com/93378894/211790930-02434a3c-a891-422c-8619-09347af0c735.gif)
+![ezgif com-gif-maker-13](https://user-images.githubusercontent.com/93378894/211791103-adb53e1f-4500-4618-8c65-0b04d1de265c.gif)
+
 
  
