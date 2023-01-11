@@ -10,6 +10,7 @@ Now all the memory the program needs is given right at the start so no more allo
 But all in all I am happy with this game. It is fun to play and runs smoothly.
 
 All of the code and assets are in this repository.
+MacOS only :(
 
 ### Gameplay
 
@@ -55,6 +56,8 @@ All of the code and assets are in this repository.
 
 ![ezgif com-gif-maker-15](https://user-images.githubusercontent.com/93378894/211793469-6ae78886-492e-4369-a8d8-fba6b28dc33d.gif)
 
+#### Electric (shock between enemies)
 
+![ezgif com-gif-maker-16](https://user-images.githubusercontent.com/93378894/211794643-d00111fb-d811-47a4-ab52-230bf4a4166b.gif)
 
  
