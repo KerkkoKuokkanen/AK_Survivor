@@ -15,6 +15,7 @@ The core gameplay is about killing hordes of enemies and power uping your charac
 
 ![ezgif com-gif-maker-11](https://user-images.githubusercontent.com/93378894/211786166-825ed42c-5a41-4d6e-8a42-10033ba1ae46.gif)
 
+
 ### Different Screens
 
 #### Upgrades
@@ -31,3 +32,5 @@ The core gameplay is about killing hordes of enemies and power uping your charac
 #### Pause
 
 <img width="1280 / 2" alt="Screenshot 2023-01-11 at 12 08 43" src="https://user-images.githubusercontent.com/93378894/211779875-31d776a2-a42a-4a88-9eec-400a573ede75.png">
+
+## Some of the upgrades
