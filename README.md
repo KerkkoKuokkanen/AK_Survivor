@@ -13,7 +13,7 @@ The core gameplay is about killing hordes of enemies and power uping your charac
 
 ### Victory
 
-![Uploading ezgif.com-gif-maker-11.gif…]()
+![ezgif com-gif-maker-11](https://user-images.githubusercontent.com/93378894/211786166-825ed42c-5a41-4d6e-8a42-10033ba1ae46.gif)
 
 ### Different Screens
 
