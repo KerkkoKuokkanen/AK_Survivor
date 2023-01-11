@@ -43,9 +43,10 @@ All of the code and assets are in this repository.
 
 ## Some of the upgrades
 
-#### Daggers
+#### Daggers                                                             ### Explosions
 
-![ezgif com-gif-maker-13](https://user-images.githubusercontent.com/93378894/211791103-adb53e1f-4500-4618-8c65-0b04d1de265c.gif)
+![ezgif com-gif-maker-13](https://user-images.githubusercontent.com/93378894/211791103-adb53e1f-4500-4618-8c65-0b04d1de265c.gif)![ezgif com-gif-maker-14](https://user-images.githubusercontent.com/93378894/211792503-49babd57-3889-47ba-bcad-f3fb6ff8bc15.gif)
+
 
 
  
