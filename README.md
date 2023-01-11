@@ -10,6 +10,7 @@ Now all the memory the program needs is given right at the start so no more allo
 But all in all I am happy with this game. It is fun to play and runs smoothly.
 
 All of the code and assets are in this repository.
+
 MacOS only :(
 
 ### Gameplay
