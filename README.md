@@ -51,6 +51,10 @@ All of the code and assets are in this repository.
 
 ![ezgif com-gif-maker-14](https://user-images.githubusercontent.com/93378894/211792503-49babd57-3889-47ba-bcad-f3fb6ff8bc15.gif)
 
+#### Fractal shot (shots split into smaller bullets)
+
+![ezgif com-gif-maker-15](https://user-images.githubusercontent.com/93378894/211793469-6ae78886-492e-4369-a8d8-fba6b28dc33d.gif)
+
 
 
  
